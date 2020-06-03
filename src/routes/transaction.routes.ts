@@ -19,10 +19,16 @@ transactionRouter.get('/', (request, response) => {
 
 transactionRouter.post('/', (request, response) => {
   try {
-    const { title, value, type} = request.body;
-    const createTransactionService = new CreateTransactionService(transactionsRepository);
+    const { title, value, type } = request.body;
+    const createTransactionService = new CreateTransactionService(
+      transactionsRepository,
+    );
 
-    const transaction = createTransactionService.execute({title, value, type});
+    const transaction = createTransactionService.execute({
+      title,
+      value,
+      type,
+    });
 
     return response.json(transaction);
   } catch (err) {
